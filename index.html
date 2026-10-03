@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كاتب الرسائل الإدارية</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f6fa;
+            color: #1f2937;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            white-space: pre-line;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>كاتب الرسائل الإدارية</h1>
+    <p>أنشئ رسالة إدارية رسمية بسهولة</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <label>نوع الرسالة</label>
+        <select id="type">
+            <option>طلب إداري</option>
+            <option>طلب توظيف</option>
+            <option>طلب رخصة</option>
+            <option>شكاية</option>
+            <option>طلب معلومات</option>
+            <option>مراسلة إدارية</option>
+        </select>
+
+        <label>اسم المرسل</label>
+        <input id="name" type="text" placeholder="اكتب اسمك">
+
+        <label>الجهة الموجه إليها</label>
+        <input id="recipient" type="text" placeholder="مثال: السيد رئيس الجماعة">
+
+        <label>موضوع الرسالة</label>
+        <input id="subject" type="text" placeholder="اكتب موضوع الرسالة">
+
+        <label>تفاصيل الطلب</label>
+        <textarea id="details" placeholder="اشرح ما تريد طلبه..."></textarea>
+
+        <label>اللغة</label>
+        <select id="language">
+            <option>العربية</option>
+            <option>Français</option>
+        </select>
+
+        <button onclick="generateLetter()">
+            إنشاء الرسالة
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+</div>
+
+<script>
+function generateLetter() {
+
+    const type = document.getElementById("type").value;
+    const name = document.getElementById("name").value;
+    const recipient = document.getElementById("recipient").value;
+    const subject = document.getElementById("subject").value;
+    const details = document.getElementById("details").value;
+
+    const letter = `
+إلى السيد/السيدة: ${recipient}
+
+الموضوع: ${subject}
+
+سلام تام بموجب مولانا الإمام،
+
+يشرفني أن أتقدم إلى سيادتكم بهذه الرسالة بخصوص ${type}.
+
+${details}
+
+وفي انتظار تفضلكم بالنظر في طلبي، تقبلوا مني فائق الاحترام والتقدير.
+
+الإمضاء:
+${name}
+`;
+
+    const result = document.getElementById("result");
+
+    result.style.display = "block";
+    result.textContent = letter;
+}
+</script>
+
+</body>
+  </html>
