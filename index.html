@@ -1,180 +1,370 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كاتب الرسائل الإدارية</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<title>كاتب الرسائل الإدارية بالذكاء الاصطناعي</title>
 
-        body {
-            margin: 0;
-            background: #f3f6fa;
-            color: #1f2937;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, Tahoma, sans-serif;
+}
 
-        header {
-            background: #2563eb;
-            color: white;
-            text-align: center;
-            padding: 35px 20px;
-        }
+body {
+    margin: 0;
+    background: #f1f5f9;
+    color: #1e293b;
+}
 
-        header h1 {
-            margin: 0 0 10px;
-            font-size: 30px;
-        }
+header {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
 
-        header p {
-            margin: 0;
-            font-size: 16px;
-        }
+header h1 {
+    margin: 0 0 12px;
+    font-size: 32px;
+}
 
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
+header p {
+    margin: 0;
+    font-size: 17px;
+}
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
+.container {
+    max-width: 850px;
+    margin: 35px auto;
+    padding: 0 18px;
+}
 
-        label {
-            display: block;
-            margin-top: 15px;
-            margin-bottom: 7px;
-            font-weight: bold;
-        }
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
 
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 15px;
-        }
+h2 {
+    margin-top: 0;
+    text-align: center;
+}
 
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
 
-        button {
-            width: 100%;
-            margin-top: 20px;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-        }
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 16px;
+    background: white;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+textarea {
+    min-height: 130px;
+    resize: vertical;
+}
 
-        #result {
-            margin-top: 25px;
-            padding: 20px;
-            background: #f8fafc;
-            border-radius: 10px;
-            white-space: pre-line;
-            display: none;
-        }
-    </style>
+button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+#result {
+    display: none;
+    margin-top: 28px;
+}
+
+.result-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#letter {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 20px;
+    line-height: 2;
+    white-space: pre-line;
+}
+
+.copy-btn {
+    background: #16a34a;
+}
+
+.copy-btn:hover {
+    background: #15803d;
+}
+
+.note {
+    text-align: center;
+    color: #64748b;
+    margin-top: 20px;
+    font-size: 14px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
     <h1>كاتب الرسائل الإدارية</h1>
-    <p>أنشئ رسالة إدارية رسمية بسهولة</p>
+    <p>أنشئ رسالتك الإدارية الرسمية بسهولة</p>
 </header>
 
 <div class="container">
 
-    <div class="card">
+<div class="card">
 
-        <label>نوع الرسالة</label>
-        <select id="type">
-            <option>طلب إداري</option>
-            <option>طلب توظيف</option>
-            <option>طلب رخصة</option>
-            <option>شكاية</option>
-            <option>طلب معلومات</option>
-            <option>مراسلة إدارية</option>
-        </select>
+<h2>📝 إنشاء رسالة إدارية</h2>
 
-        <label>اسم المرسل</label>
-        <input id="name" type="text" placeholder="اكتب اسمك">
+<label>نوع الرسالة</label>
 
-        <label>الجهة الموجه إليها</label>
-        <input id="recipient" type="text" placeholder="مثال: السيد رئيس الجماعة">
+<select id="type">
 
-        <label>موضوع الرسالة</label>
-        <input id="subject" type="text" placeholder="اكتب موضوع الرسالة">
+<option value="طلب إداري">طلب إداري</option>
 
-        <label>تفاصيل الطلب</label>
-        <textarea id="details" placeholder="اشرح ما تريد طلبه..."></textarea>
+<option value="طلب توظيف">
+طلب توظيف
+</option>
 
-        <label>اللغة</label>
-        <select id="language">
-            <option>العربية</option>
-            <option>Français</option>
-        </select>
+<option value="طلب تدريب">
+طلب تدريب
+</option>
 
-        <button onclick="generateLetter()">
-            إنشاء الرسالة
-        </button>
+<option value="طلب رخصة">
+طلب رخصة
+</option>
 
-        <div id="result"></div>
+<option value="طلب شهادة">
+طلب شهادة أو وثيقة
+</option>
 
-    </div>
+<option value="طلب معلومات">
+طلب معلومات
+</option>
+
+<option value="شكاية">
+شكاية
+</option>
+
+<option value="طلب مساعدة">
+طلب مساعدة
+</option>
+
+<option value="طلب الاستفادة من خدمة">
+طلب الاستفادة من خدمة
+</option>
+
+<option value="طلب سكن">
+طلب سكن
+</option>
+
+<option value="مراسلة إدارية">
+مراسلة إدارية
+</option>
+
+</select>
+
+
+<label>اسم المرسل</label>
+
+<input
+id="name"
+type="text"
+placeholder="مثال: محمد العلوي"
+>
+
+
+<label>الجهة الموجه إليها</label>
+
+<input
+id="recipient"
+type="text"
+placeholder="مثال: السيد رئيس الجماعة"
+>
+
+
+<label>موضوع الرسالة</label>
+
+<input
+id="subject"
+type="text"
+placeholder="مثال: طلب الاستفادة من رخصة"
+>
+
+
+<label>تفاصيل الطلب</label>
+
+<textarea
+id="details"
+placeholder="اشرح طلبك بالتفصيل هنا..."
+></textarea>
+
+
+<label>لغة الرسالة</label>
+
+<select id="language">
+
+<option value="العربية">
+العربية
+</option>
+
+<option value="الفرنسية">
+Français
+</option>
+
+</select>
+
+
+<button onclick="generateLetter()">
+✍️ إنشاء الرسالة
+</button>
+
+
+<div id="result">
+
+<div class="result-title">
+📄 الرسالة الناتجة:
+</div>
+
+<div id="letter"></div>
+
+<button class="copy-btn" onclick="copyLetter()">
+📋 نسخ الرسالة
+</button>
 
 </div>
 
+<p class="note">
+ستتم إضافة الذكاء الاصطناعي الحقيقي في المرحلة القادمة 🤖
+</p>
+
+</div>
+
+</div>
+
+
 <script>
+
 function generateLetter() {
 
-    const type = document.getElementById("type").value;
-    const name = document.getElementById("name").value;
-    const recipient = document.getElementById("recipient").value;
-    const subject = document.getElementById("subject").value;
-    const details = document.getElementById("details").value;
+const type =
+document.getElementById("type").value;
 
-    const letter = `
-إلى السيد/السيدة: ${recipient}
+const name =
+document.getElementById("name").value;
+
+const recipient =
+document.getElementById("recipient").value;
+
+const subject =
+document.getElementById("subject").value;
+
+const details =
+document.getElementById("details").value;
+
+const language =
+document.getElementById("language").value;
+
+
+if (!name || !recipient || !subject || !details) {
+
+alert("يرجى ملء جميع المعلومات قبل إنشاء الرسالة.");
+
+return;
+
+}
+
+
+let letter = "";
+
+if (language === "العربية") {
+
+letter = `إلى السيد/السيدة: ${recipient}
 
 الموضوع: ${subject}
 
 سلام تام بموجب مولانا الإمام،
 
-يشرفني أن أتقدم إلى سيادتكم بهذه الرسالة بخصوص ${type}.
+وبعد،
+
+يشرفني أن أتقدم إلى سيادتكم بهذا الطلب المتعلق بـ ${type}.
 
 ${details}
 
-وفي انتظار تفضلكم بالنظر في طلبي، تقبلوا مني فائق الاحترام والتقدير.
+وفي انتظار تفضلكم بالنظر في طلبي واتخاذ ما ترونه مناسبًا، تقبلوا، السيد/السيدة، فائق عبارات الاحترام والتقدير.
+
+والسلام.
 
 الإمضاء:
-${name}
-`;
 
-    const result = document.getElementById("result");
+${name}`;
 
-    result.style.display = "block";
-    result.textContent = letter;
+} else {
+
+letter = `À Monsieur/Madame : ${recipient}
+
+Objet : ${subject}
+
+Monsieur/Madame,
+
+J'ai l'honneur de vous adresser la présente demande concernant ${type}.
+
+${details}
+
+Dans l'attente d'une suite favorable à ma demande, veuillez agréer, Monsieur/Madame, l'expression de mes salutations distinguées.
+
+Signature :
+
+${name}`;
+
 }
+
+
+document.getElementById("letter").textContent = letter;
+
+document.getElementById("result").style.display = "block";
+
+}
+
+
+function copyLetter() {
+
+const text =
+document.getElementById("letter").innerText;
+
+navigator.clipboard.writeText(text);
+
+alert("تم نسخ الرسالة بنجاح ✅");
+
+}
+
 </script>
 
 </body>
-  </html>
+</html>
